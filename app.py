@@ -1,18 +1,28 @@
 from text2sql import ChatBot
+from chatGPT.ChatAgent import chatAgent
+
+
+
 from flask import Flask, render_template, request
 from langdetect import detect
 from utils.translate_utils import translate_zh_to_en
 from utils.db_utils import add_a_record
 from langdetect.lang_detect_exception import LangDetectException
 
+chatAgent.reset()
 text2sql_bot = ChatBot()
 # replace None with your API token
 baidu_api_token = None
 
 app = Flask(__name__)
 
-@app.route("/chatbot")
+
+@app.route("/")
 def home():
+    return index()
+
+@app.route("/chatbot")
+def index():
     return render_template("index.html")
 
 @app.route("/get_db_ids")
@@ -27,6 +37,11 @@ def get_db_ddl():
     
     return text2sql_bot.db_id2ddl[db_id]
 
+
+@app.route("/flush")
+def flush():
+    chatAgent.reset()
+
 @app.route("/get")
 def get_bot_response():
     global text2sql_bot
@@ -37,13 +52,18 @@ def get_bot_response():
     if question.strip() == "":
         return "Sorry, your question is empty."
     
-    try:
-        if baidu_api_token is not None and detect(question) != "en":
-            print("Before tanslation:", question)
-            question = translate_zh_to_en(question, baidu_api_token)
-            print("After tanslation:", question)
-    except LangDetectException as e:
-        print("language detection error:", str(e))
+    # TODO 使用ChatGPT完成翻译和多轮对话部分
+    
+    # 提问-回答-记录
+    chatAgent.messages.append({"role": "user", "content": question})
+    answer = chatAgent.ask_gpt()
+    
+    chatAgent.messages.append({"role": "assistant", "content": answer})
+
+    question = answer
+    
+    print("Question After ChatGPT: " + question)
+    
 
     predicted_sql = text2sql_bot.get_response(question, db_id)
     print("predicted sql:", predicted_sql)

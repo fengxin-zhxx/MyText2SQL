@@ -66,7 +66,7 @@ if __name__ == "__main__":
     remove_contents_of_a_folder("db_contents_index")
     # build content index for Bank_Financials's training set databases
     for db_id in os.listdir("databases"):
-        print(db_id)
+        # print(db_id)
         build_content_index(
             os.path.join("databases", db_id, db_id + ".sqlite"),
             os.path.join("db_contents_index", db_id)

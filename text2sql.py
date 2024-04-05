@@ -113,7 +113,7 @@ def get_db_id2ddl(db_path):
 class ChatBot():
     def __init__(self) -> None:
         os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-        model_name = "seeklhy/codes-7b-merged"
+        model_name = "seeklhy/codes-1b-spider"
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map = "auto", torch_dtype = torch.float16)
         self.max_length = 4096

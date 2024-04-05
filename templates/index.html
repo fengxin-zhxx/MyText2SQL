@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>CodeS demo</title>
+  <title>NL2SQL DEMO</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,16 +22,16 @@
 
     <main class="msger-chat">
       <div class="msg left-msg">
-        <div class="msg-img" style="background-image: url(static/logo/codes_logo.png)"></div>
+        <div class="msg-img" style="background-image: url(static/logo/bot_logo.png)"></div>
 
         <div class="msg-bubble">
           <div class="msg-info">
-            <div class="msg-info-name">CodeS</div>
+            <div class="msg-info-name">BOT</div>
             <div class="msg-info-time"></div>
           </div>
 
           <div class="msg-text">
-            Welcome to the CodeS demo! <br><br> To begin, select your preferred database from the options available in the box on the right. After making your selection, input your questions in natural language and then CodeS will seamlessly translate your input into a valid SQL query. <br><br> For instance, you can input: "Help me find the three papers with the highest citations authored by 'Zhang Jing' from 'Renmin University of China'."
+            Welcome to the NL2SQL demo! <br><br> To begin, select your preferred database from the options available in the box on the right. After making your selection, input your questions in natural language and then the bot will seamlessly translate your input into a valid SQL query. <br><br> For instance, you can input: "Find out the singer with the highest total sales of songs in the database."<br><br>In addition, the bot can understand multiple rounds of dialogue and synthesize information from previous chats to give the appropriate SQL query. 
           </div>
         </div>
       </div>
@@ -62,9 +62,9 @@
     const msgerInput = get(".msger-input");
     const msgerChat = get(".msger-chat");
 
-    const BOT_IMG = "static/logo/codes_logo.png";
+    const BOT_IMG = "static/logo/bot_logo.png";
     const PERSON_IMG = "static/logo/user_logo.png";
-    const BOT_NAME = "CodeS";
+    const BOT_NAME = "BOT";
     const PERSON_NAME = "You";
 
     function updateDDL(db){
@@ -74,6 +74,7 @@
     }
 
     $.get("/get_db_ids").done(function (data) {
+        // put databases ids in selector
         const selectElement = document.getElementById('dbSelector');
         data.forEach(db_id => {
             const optionElement = document.createElement('option');
@@ -83,6 +84,7 @@
         });
         // console.log(data);
         updateDDL(data[0]);
+        // put the first data in the text
     });
     
     document.getElementById('dbSelector').addEventListener('change', function() {
