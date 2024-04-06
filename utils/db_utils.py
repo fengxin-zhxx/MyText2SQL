@@ -40,7 +40,6 @@ def get_cursor_from_path(sqlite_path):
 @func_set_timeout(15)
 def execute_sql(cursor, sql):
     cursor.execute(sql)
-
     return cursor.fetchall()
 
 # execute predicted sql with a long time limitation (for buiding content index)
@@ -253,3 +252,60 @@ def get_db_schema(db_path, db_comments, db_id):
     schema["foreign_keys"] = foreign_keys
     
     return schema
+
+
+def get_tables(cursor):
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    return cursor.fetchall()
+
+def get_table_info(cursor, table_name):
+    cursor.execute(f"PRAGMA table_info({table_name})")
+    return cursor.fetchall()
+
+# 根据sqlite_path 得到 对应json格式数据
+def get_db_info(sqlite_path):
+    # 连接到SQLite数据库
+    conn = sqlite3.connect('singer.sqlite')
+    cursor = conn.cursor()
+
+    # 获取所有的表
+    tables = get_tables(cursor)
+
+    # 构造要输出的json数据
+    db = {}
+    db["db_id"] = "singer"
+
+    db["table_names_original"] = []
+    db["table_names"] = []
+    # 与table_names_original区别：表名转换成全小写，并将所有下划线替换成空格
+
+    db["column_names_original"] = [[-1, "*"]]
+    db["column_names"] = [[-1, "*"]]
+    # 与column_names_original区别：列名转换成全小写，并将所有下划线替换成空格
+
+    for table_id, table_tuple in enumerate(tables):
+        table_name = table_tuple[0]
+        db["table_names_original"].append(table_name)
+        db["table_names"].append(table_name.lower().replace("_", " "))
+
+        # 获取表的列名
+        table_info = get_table_info(cursor, table_name)
+
+        # 添加表的列名
+        for column in table_info:
+            db["column_names_original"].append([table_id, column[1]])
+            db["column_names"].append([table_id, column[1].lower().replace("_", " ")])
+    
+    # 关闭数据库连接
+    conn.close()
+    return db
+
+
+# 将sqlite_path 对应的sqlite文件加入 table_json
+def add_table(sqlite_path, table_json_path):
+    db_info = json.load(open(table_json_path))
+    db = get_db_info(sqlite_path)
+    db_info.append(db)
+    # 将数据写入json文件
+    with open(table_json_path, 'w') as f:
+        json.dump(db_info, f, indent=2)
