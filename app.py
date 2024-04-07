@@ -4,10 +4,8 @@ from chatGPT.ChatAgent import chatAgent
 
 
 from flask import Flask, render_template, request
-from langdetect import detect
 from utils.translate_utils import translate_zh_to_en
 from utils.db_utils import add_a_record
-from langdetect.lang_detect_exception import LangDetectException
 
 chatAgent.reset()
 text2sql_bot = ChatBot()
