@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='layui/css/layui.css') }}" media="all">
+
   <script src="static/js/jquery-3.7.1.min.js"></script>
 </head>
 
@@ -25,8 +27,8 @@
   
     <form class="msger-inputarea">
       <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
-      <button type="submit" class="msger-send-btn" style="background-color: chocolate;" id="RefreshButton"> Refresh </button>
-      <button type="button" class="msger-send-btn" >Send</button>
+      <button type="button" class="msger-send-btn" style="background-color: chocolate;" id="RefreshButton"> Refresh </button>
+      <button type="submit" class="msger-send-btn" >Send</button>
     </form>
   </section>
 
@@ -38,10 +40,17 @@
     </header>
     <select id="dbSelector" class="select-button"></select>
     <div id="ddlText" class="ddl-text"></div>
+
+    <div class="layui-upload-drag" style="display: block;" id="ID-upload-demo-drag">
+      <i class="layui-icon layui-icon-upload"></i> 
+      <div>点击或拖拽到此处，上传sqlite文件</div>  
+    </div>
+
   </section>
 
   <!-- partial -->
   <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+  <script type="text/javascript" src="{{ url_for('static',filename='layui/layui.js') }}" charset="utf-8"></script>
   <script>
 
     const msgerForm = get(".msger-inputarea");
@@ -71,6 +80,7 @@
 </div>      
 `
       msgerChat.innerHTML = originHTML
+      console.log("Resetted Chatbot.")
     }
     resetChat()
 
@@ -159,10 +169,35 @@
 
     document.getElementById("RefreshButton").addEventListener("click", function(){
       $.post("/flush").done(function(){
-        console.log("Resetted Chatbot.")
         resetChat()
       })
     })
+
+    layui.use(function(){
+      var loadIndex;
+      var upload = layui.upload;
+      var $ = layui.$;
+      // 渲染
+      upload.render({
+        elem: '#ID-upload-demo-drag',
+        url: '/upload',
+        accept: 'file',
+        exts: 'sqlite',
+        multiple: 'false',
+        progress:  function(){
+          loadIndex = layer.msg('正在添加数据库，请稍等..', {
+            icon: 16,
+            shade: 0.01,
+            time: 0
+            });;
+        },
+        done: function(res){
+          console.log(res)
+          layer.close(loadIndex)
+          layer.msg('上传成功');
+        }
+      });
+      });
 
 
   </script>

@@ -1,6 +1,7 @@
 import os
 import json
 import sqlite3
+import shutil
 
 from func_timeout import func_set_timeout, FunctionTimedOut
 from utils.bridge_content_encoder import get_matched_entries
@@ -263,9 +264,10 @@ def get_table_info(cursor, table_name):
     return cursor.fetchall()
 
 # 根据sqlite_path 得到 对应json格式数据
-def get_db_info(sqlite_path):
+def get_db_info(db_id, sqlite_path):
+    print(sqlite_path)
     # 连接到SQLite数据库
-    conn = sqlite3.connect('singer.sqlite')
+    conn = sqlite3.connect(sqlite_path)
     cursor = conn.cursor()
 
     # 获取所有的表
@@ -273,7 +275,7 @@ def get_db_info(sqlite_path):
 
     # 构造要输出的json数据
     db = {}
-    db["db_id"] = "singer"
+    db["db_id"] = db_id
 
     db["table_names_original"] = []
     db["table_names"] = []
@@ -302,10 +304,48 @@ def get_db_info(sqlite_path):
 
 
 # 将sqlite_path 对应的sqlite文件加入 table_json
-def add_table(sqlite_path, table_json_path):
+def add_table(db_id, sqlite_path, table_json_path):
     db_info = json.load(open(table_json_path))
-    db = get_db_info(sqlite_path)
+    db = get_db_info(db_id, sqlite_path)
+    # TODO：检查重复 删除原有加入新的
     db_info.append(db)
     # 将数据写入json文件
     with open(table_json_path, 'w') as f:
         json.dump(db_info, f, indent=2)
+
+
+def organize_sqlite_files(upload_dir, databases_dir):
+    # 创建databases目录
+    if not os.path.exists(databases_dir):
+        os.makedirs(databases_dir)
+    
+    # 遍历upload目录中的所有文件
+    for file_name in os.listdir(upload_dir):
+        if file_name.endswith('.sqlite'):
+            # 构建目标文件夹路径
+            target_dir = os.path.join(databases_dir, os.path.splitext(file_name)[0])
+            
+            # 如果目标文件夹已存在，则删除文件夹及其内容
+            if os.path.exists(target_dir):
+                shutil.rmtree(target_dir)
+            
+            # 创建目标文件夹
+            os.makedirs(target_dir)
+            
+            # 移动文件到目标文件夹
+            shutil.move(os.path.join(upload_dir, file_name), os.path.join(target_dir, file_name))
+
+    # 删除upload目录中的所有sqlite文件
+    for file_name in os.listdir(upload_dir):
+        if file_name.endswith('.sqlite'):
+            os.remove(os.path.join(upload_dir, file_name))
+
+
+def update_db(new_sqlite):
+    organize_sqlite_files('uploads', 'databases')
+    sqlite_path = os.path.join('databases', new_sqlite, new_sqlite + '.sqlite')
+    add_table(new_sqlite, sqlite_path, os.path.join('data', 'tables.json'))
+    os.system("python -u build_contents_index.py")
+    
+    
+    

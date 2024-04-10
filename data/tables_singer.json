@@ -1,0 +1,105 @@
+[
+  {
+    "db_id": "singer",
+    "table_names_original": [
+      "singer",
+      "song"
+    ],
+    "table_names": [
+      "singer",
+      "song"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "Singer_ID"
+      ],
+      [
+        0,
+        "Name"
+      ],
+      [
+        0,
+        "Birth_Year"
+      ],
+      [
+        0,
+        "Net_Worth_Millions"
+      ],
+      [
+        0,
+        "Citizenship"
+      ],
+      [
+        1,
+        "Song_ID"
+      ],
+      [
+        1,
+        "Title"
+      ],
+      [
+        1,
+        "Singer_ID"
+      ],
+      [
+        1,
+        "Sales"
+      ],
+      [
+        1,
+        "Highest_Position"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "singer id"
+      ],
+      [
+        0,
+        "name"
+      ],
+      [
+        0,
+        "birth year"
+      ],
+      [
+        0,
+        "net worth millions"
+      ],
+      [
+        0,
+        "citizenship"
+      ],
+      [
+        1,
+        "song id"
+      ],
+      [
+        1,
+        "title"
+      ],
+      [
+        1,
+        "singer id"
+      ],
+      [
+        1,
+        "sales"
+      ],
+      [
+        1,
+        "highest position"
+      ]
+    ]
+  }
+]
