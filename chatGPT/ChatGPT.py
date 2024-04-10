@@ -9,7 +9,9 @@ base_url=settings['base_url']
 api_key=settings['api_key']
 model=settings['model']
 
-prompt=settings['prompt']
+
+with open('chatGPT/prompt.json', 'r', encoding='utf-8') as f:
+    prompt = json.loads(f.read())['prompt']
 
 
 client = openai.OpenAI(
