@@ -18,7 +18,7 @@
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        Text-to-SQL demo 
+        NL2SQL demo 
       </div>
     </header>
 
@@ -38,7 +38,10 @@
         Select a database
       </div>
     </header>
-    <select id="dbSelector" class="select-button"></select>
+    <div class="layui-form layui-row">
+    <select id="dbSelector" lay-search=""></select>
+    </div>
+
     <div id="ddlText" class="ddl-text"></div>
 
     <div class="layui-upload-drag" style="display: block;" id="ID-upload-demo-drag">
@@ -91,9 +94,11 @@
       });
     }
 
-    $.get("/get_db_ids").done(function (data) {
+    function updateDB(){
+      $.get("/get_db_ids").done(function (data) {
         // put databases ids in selector
         const selectElement = document.getElementById('dbSelector');
+        selectElement.innerHTML = ""
         data.forEach(db_id => {
             const optionElement = document.createElement('option');
             optionElement.value = db_id;
@@ -103,7 +108,10 @@
         // console.log(data);
         updateDDL(data[0]);
         // put the first data in the text
-    });
+      });
+    }
+    updateDB()
+
     
     document.getElementById('dbSelector').addEventListener('change', function() {
       updateDDL(this.value);
@@ -194,6 +202,7 @@
         done: function(res){
           console.log(res)
           layer.close(loadIndex)
+          updateDB()
           layer.msg('上传成功');
         }
       });

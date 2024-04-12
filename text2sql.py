@@ -122,14 +122,18 @@ class ChatBot():
 
         self.sic = SchemaItemClassifierInference("sic_ckpts/sic_bird")
 
+
+        self.reset()
+
+    def reset(self):
         self.db_id2content_searcher = dict()
         for db_id in os.listdir("db_contents_index"):
             self.db_id2content_searcher[db_id] = LuceneSearcher(os.path.join("db_contents_index", db_id))
-        
+            
         self.db_ids = sorted(os.listdir("databases"))
         self.db_id2schema = get_db_id2schema("databases", "data/tables.json")
         self.db_id2ddl = get_db_id2ddl("databases")
-
+    
     def get_response(self, question, db_id):
         data = {
             "text": question,

@@ -86,7 +86,8 @@ def upload_file():
     file.save(os.path.join('uploads', file.filename))
     update_db(file.filename[:-7])
     # TODO： 刷新chatbot db列表
-    
+    global text2sql_bot
+    text2sql_bot.reset()
     return jsonify({'message': file.filename + '上传成功'}), 200
 
 
