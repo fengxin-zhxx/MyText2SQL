@@ -49,7 +49,7 @@ def get_bot_response():
     global text2sql_bot
     question = request.args.get('msg')
     db_id = request.args.get('db_id')
-    add_a_record(question, db_id)
+    # add_a_record(question, db_id)
     
     if question.strip() == "":
         return "Sorry, your question is empty."
