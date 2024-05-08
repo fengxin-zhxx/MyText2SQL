@@ -52,13 +52,14 @@ def get_bot_response():
     if question.strip() == "":
         return "Sorry, your question is empty."
     
-    # 提问-回答-记录
-    chatAgent.messages.append({"role": "user", "content": question})
+
+    chatAgent.add_question(question)
+    
     answer = chatAgent.ask_gpt()
     
-    chatAgent.messages.append({"role": "assistant", "content": answer})
+    print("ChatGPT Reply:", answer)
 
-    question = answer
+    question = answer.split("Answer_En: ")[1]
     
     print("Question After ChatGPT: " + question)
     

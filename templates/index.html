@@ -81,7 +81,10 @@
 </div>      
 `
       msgerChat.innerHTML = originHTML
-      console.log("Resetted Chatbot.")
+
+      $.post("/flush").done(function(){
+        console.log("Resetted Chatbot.")
+      })
     }
     resetChat()
 
@@ -174,9 +177,8 @@
     }
 
     document.getElementById("RefreshButton").addEventListener("click", function(){
-      $.post("/flush").done(function(){
-        resetChat()
-      })
+      resetChat()
+      
     })
 
     layui.use(function(){
