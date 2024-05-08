@@ -18,17 +18,18 @@
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        NL2SQL demo 
+        NL2SQL demo
       </div>
     </header>
 
     <main class="msger-chat">
     </main>
-  
+
     <form class="msger-inputarea">
       <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
-      <button type="button" class="msger-send-btn" style="background-color: chocolate;" id="RefreshButton"> Refresh </button>
-      <button type="submit" class="msger-send-btn" >Send</button>
+      <button type="button" class="msger-send-btn" style="background-color: chocolate;" id="RefreshButton"> Refresh
+      </button>
+      <button type="submit" class="msger-send-btn">Send</button>
     </form>
   </section>
 
@@ -43,8 +44,8 @@
     <div id="ddlText" class="ddl-text"></div>
 
     <div class="layui-upload-drag" style="display: block;" id="ID-upload-demo-drag">
-      <i class="layui-icon layui-icon-upload"></i> 
-      <div>点击或拖拽到此处，上传sqlite文件</div>  
+      <i class="layui-icon layui-icon-upload"></i>
+      <div>点击或拖拽到此处，上传sqlite文件</div>
     </div>
 
   </section>
@@ -63,7 +64,7 @@
     const BOT_NAME = "BOT";
     const PERSON_NAME = "You";
 
-    function resetChat(){
+    function resetChat() {
       const originHTML = `
 <div class="msg left-msg">
   <div class="msg-img" style="background-image: url(static/logo/bot_logo.png)"></div>
@@ -82,29 +83,29 @@
 `
       msgerChat.innerHTML = originHTML
 
-      $.post("/flush").done(function(){
+      $.post("/flush").done(function () {
         console.log("Resetted Chatbot.")
       })
     }
     resetChat()
 
 
-    function updateDDL(db){
-      $.get("/get_db_ddl", {db_id: db}).done(function (data) {
+    function updateDDL(db) {
+      $.get("/get_db_ddl", { db_id: db }).done(function (data) {
         document.getElementById('ddlText').innerText = data
       });
     }
 
-    function updateDB(){
+    function updateDB() {
       $.get("/get_db_ids").done(function (data) {
         // put databases ids in selector
         const selectElement = document.getElementById('dbSelector');
         selectElement.innerHTML = ""
         data.forEach(db_id => {
-            const optionElement = document.createElement('option');
-            optionElement.value = db_id;
-            optionElement.textContent = db_id;
-            selectElement.appendChild(optionElement);
+          const optionElement = document.createElement('option');
+          optionElement.value = db_id;
+          optionElement.textContent = db_id;
+          selectElement.appendChild(optionElement);
         });
         // console.log(data);
         updateDDL(data[0]);
@@ -113,8 +114,8 @@
     }
     updateDB()
 
-    
-    document.getElementById('dbSelector').addEventListener('change', function() {
+
+    document.getElementById('dbSelector').addEventListener('change', function () {
       updateDDL(this.value);
       resetChat()
     });
@@ -123,7 +124,7 @@
       event.preventDefault();
 
       const msgText = msgerInput.value;
-      const db =  document.getElementById("dbSelector").value
+      const db = document.getElementById("dbSelector").value
       if (!msgText) return;
 
       appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
@@ -147,7 +148,6 @@
   </div>
 </div>
 `;
-
       msgerChat.insertAdjacentHTML("beforeend", msgHTML);
       msgerChat.scrollTop += 500;
     }
@@ -158,10 +158,36 @@
       $.get("/get", { msg: rawText, db_id: db }).done(function (data) {
         console.log(rawText);
         console.log(data);
-        const msgText = data;
+        var msgText = "";
+        msgText = "<b>Database:</b><br>" + data["Database"] + "<br>"
+        msgText += "<b>Question after llm:</b><br>" + data["Question after llm"] + "<br><br>"
+        msgText += "<b>Predicted SQL query:</b><br>" + data["Predicted SQL query"] + "<br>"
+        SQL = data["Predicted SQL query"]
+
+        msgText += "<button type=\"button\" class=\"layui-btn\" style=\"margin-top:10px\" onclick=\"runSQL('" + encodeURIComponent(SQL) + "')\">Run</button>"
         appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
       });
+    }
 
+    function runSQL(sql) {
+      const db = document.getElementById("dbSelector").value
+      console.log(db, sql)
+      $.get("/run", {db: db, sql: sql}).done(function (data) {
+        console.log(data)        
+        data = data.replace(/\r\n/g,"<br>")  
+        data = data.replace(/\n/g,"<br>");  
+        console.log(data)
+
+        data = data.replaceAll(' ', '&nbsp')
+
+        result = '<div style="font-family:Consolas, FreeMono">' + data + '</div>'
+
+        layer.open({
+          type: 1,
+          area: 'auto', // 宽高
+          content: result
+        });
+      })
     }
 
     // Utils
@@ -176,12 +202,12 @@
       return `${h.slice(-2)}:${m.slice(-2)}`;
     }
 
-    document.getElementById("RefreshButton").addEventListener("click", function(){
+    document.getElementById("RefreshButton").addEventListener("click", function () {
       resetChat()
-      
     })
 
-    layui.use(function(){
+
+    layui.use(function () {
       var loadIndex;
       var upload = layui.upload;
       var $ = layui.$;
@@ -192,21 +218,21 @@
         accept: 'file',
         exts: 'sqlite',
         multiple: 'false',
-        progress:  function(){
+        progress: function () {
           loadIndex = layer.msg('正在添加数据库，请稍等..', {
             icon: 16,
             shade: 0.01,
             time: 0
-            });;
+          });;
         },
-        done: function(res){
+        done: function (res) {
           console.log(res)
           layer.close(loadIndex)
           updateDB()
           layer.msg('上传成功');
         }
       });
-      });
+    });
 
 
   </script>

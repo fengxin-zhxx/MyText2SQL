@@ -8,6 +8,8 @@ from utils.bridge_content_encoder import get_matched_entries
 from nltk.tokenize import word_tokenize
 from nltk import ngrams
 
+from prettytable import PrettyTable
+
 def add_a_record(question, db_id):
     conn = sqlite3.connect('data/history/history.sqlite')
     cursor = conn.cursor()
@@ -348,4 +350,17 @@ def update_db(new_sqlite):
     os.system("python -u build_contents_index.py")
     
     
-    
+def execute_sql_with_pretty_table(cursor, sql):
+    cursor.execute(sql)
+    results = cursor.fetchall()
+
+    # 如果结果为空，则返回空字符串
+    if not results:
+        return ""
+
+    # 使用 PrettyTable 创建表格
+    table = PrettyTable()
+    table.field_names = [desc[0] for desc in cursor.description]
+    for row in results:
+        table.add_row(row)
+    return str(table)

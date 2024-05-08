@@ -915,5 +915,1168 @@
         "classroom"
       ]
     ]
+  },
+  {
+    "db_id": "music_1",
+    "table_names_original": [
+      "genre",
+      "artist",
+      "files",
+      "song"
+    ],
+    "table_names": [
+      "genre",
+      "artist",
+      "files",
+      "song"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "g_name"
+      ],
+      [
+        0,
+        "rating"
+      ],
+      [
+        0,
+        "most_popular_in"
+      ],
+      [
+        1,
+        "artist_name"
+      ],
+      [
+        1,
+        "country"
+      ],
+      [
+        1,
+        "gender"
+      ],
+      [
+        1,
+        "preferred_genre"
+      ],
+      [
+        2,
+        "f_id"
+      ],
+      [
+        2,
+        "artist_name"
+      ],
+      [
+        2,
+        "file_size"
+      ],
+      [
+        2,
+        "duration"
+      ],
+      [
+        2,
+        "formats"
+      ],
+      [
+        3,
+        "song_name"
+      ],
+      [
+        3,
+        "artist_name"
+      ],
+      [
+        3,
+        "country"
+      ],
+      [
+        3,
+        "f_id"
+      ],
+      [
+        3,
+        "genre_is"
+      ],
+      [
+        3,
+        "rating"
+      ],
+      [
+        3,
+        "languages"
+      ],
+      [
+        3,
+        "releasedate"
+      ],
+      [
+        3,
+        "resolution"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "g name"
+      ],
+      [
+        0,
+        "rating"
+      ],
+      [
+        0,
+        "most popular in"
+      ],
+      [
+        1,
+        "artist name"
+      ],
+      [
+        1,
+        "country"
+      ],
+      [
+        1,
+        "gender"
+      ],
+      [
+        1,
+        "preferred genre"
+      ],
+      [
+        2,
+        "f id"
+      ],
+      [
+        2,
+        "artist name"
+      ],
+      [
+        2,
+        "file size"
+      ],
+      [
+        2,
+        "duration"
+      ],
+      [
+        2,
+        "formats"
+      ],
+      [
+        3,
+        "song name"
+      ],
+      [
+        3,
+        "artist name"
+      ],
+      [
+        3,
+        "country"
+      ],
+      [
+        3,
+        "f id"
+      ],
+      [
+        3,
+        "genre is"
+      ],
+      [
+        3,
+        "rating"
+      ],
+      [
+        3,
+        "languages"
+      ],
+      [
+        3,
+        "releasedate"
+      ],
+      [
+        3,
+        "resolution"
+      ]
+    ]
+  },
+  {
+    "db_id": "election",
+    "table_names_original": [
+      "county",
+      "party",
+      "election"
+    ],
+    "table_names": [
+      "county",
+      "party",
+      "election"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "County_Id"
+      ],
+      [
+        0,
+        "County_name"
+      ],
+      [
+        0,
+        "Population"
+      ],
+      [
+        0,
+        "Zip_code"
+      ],
+      [
+        1,
+        "Party_ID"
+      ],
+      [
+        1,
+        "Year"
+      ],
+      [
+        1,
+        "Party"
+      ],
+      [
+        1,
+        "Governor"
+      ],
+      [
+        1,
+        "Lieutenant_Governor"
+      ],
+      [
+        1,
+        "Comptroller"
+      ],
+      [
+        1,
+        "Attorney_General"
+      ],
+      [
+        1,
+        "US_Senate"
+      ],
+      [
+        2,
+        "Election_ID"
+      ],
+      [
+        2,
+        "Counties_Represented"
+      ],
+      [
+        2,
+        "District"
+      ],
+      [
+        2,
+        "Delegate"
+      ],
+      [
+        2,
+        "Party"
+      ],
+      [
+        2,
+        "First_Elected"
+      ],
+      [
+        2,
+        "Committee"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "county id"
+      ],
+      [
+        0,
+        "county name"
+      ],
+      [
+        0,
+        "population"
+      ],
+      [
+        0,
+        "zip code"
+      ],
+      [
+        1,
+        "party id"
+      ],
+      [
+        1,
+        "year"
+      ],
+      [
+        1,
+        "party"
+      ],
+      [
+        1,
+        "governor"
+      ],
+      [
+        1,
+        "lieutenant governor"
+      ],
+      [
+        1,
+        "comptroller"
+      ],
+      [
+        1,
+        "attorney general"
+      ],
+      [
+        1,
+        "us senate"
+      ],
+      [
+        2,
+        "election id"
+      ],
+      [
+        2,
+        "counties represented"
+      ],
+      [
+        2,
+        "district"
+      ],
+      [
+        2,
+        "delegate"
+      ],
+      [
+        2,
+        "party"
+      ],
+      [
+        2,
+        "first elected"
+      ],
+      [
+        2,
+        "committee"
+      ]
+    ]
+  },
+  {
+    "db_id": "books",
+    "table_names_original": [
+      "address_status",
+      "author",
+      "book_language",
+      "country",
+      "address",
+      "customer",
+      "customer_address",
+      "order_status",
+      "publisher",
+      "book",
+      "book_author",
+      "shipping_method",
+      "cust_order",
+      "sqlite_sequence",
+      "order_history",
+      "order_line"
+    ],
+    "table_names": [
+      "address status",
+      "author",
+      "book language",
+      "country",
+      "address",
+      "customer",
+      "customer address",
+      "order status",
+      "publisher",
+      "book",
+      "book author",
+      "shipping method",
+      "cust order",
+      "sqlite sequence",
+      "order history",
+      "order line"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "status_id"
+      ],
+      [
+        0,
+        "address_status"
+      ],
+      [
+        1,
+        "author_id"
+      ],
+      [
+        1,
+        "author_name"
+      ],
+      [
+        2,
+        "language_id"
+      ],
+      [
+        2,
+        "language_code"
+      ],
+      [
+        2,
+        "language_name"
+      ],
+      [
+        3,
+        "country_id"
+      ],
+      [
+        3,
+        "country_name"
+      ],
+      [
+        4,
+        "address_id"
+      ],
+      [
+        4,
+        "street_number"
+      ],
+      [
+        4,
+        "street_name"
+      ],
+      [
+        4,
+        "city"
+      ],
+      [
+        4,
+        "country_id"
+      ],
+      [
+        5,
+        "customer_id"
+      ],
+      [
+        5,
+        "first_name"
+      ],
+      [
+        5,
+        "last_name"
+      ],
+      [
+        5,
+        "email"
+      ],
+      [
+        6,
+        "customer_id"
+      ],
+      [
+        6,
+        "address_id"
+      ],
+      [
+        6,
+        "status_id"
+      ],
+      [
+        7,
+        "status_id"
+      ],
+      [
+        7,
+        "status_value"
+      ],
+      [
+        8,
+        "publisher_id"
+      ],
+      [
+        8,
+        "publisher_name"
+      ],
+      [
+        9,
+        "book_id"
+      ],
+      [
+        9,
+        "title"
+      ],
+      [
+        9,
+        "isbn13"
+      ],
+      [
+        9,
+        "language_id"
+      ],
+      [
+        9,
+        "num_pages"
+      ],
+      [
+        9,
+        "publication_date"
+      ],
+      [
+        9,
+        "publisher_id"
+      ],
+      [
+        10,
+        "book_id"
+      ],
+      [
+        10,
+        "author_id"
+      ],
+      [
+        11,
+        "method_id"
+      ],
+      [
+        11,
+        "method_name"
+      ],
+      [
+        11,
+        "cost"
+      ],
+      [
+        12,
+        "order_id"
+      ],
+      [
+        12,
+        "order_date"
+      ],
+      [
+        12,
+        "customer_id"
+      ],
+      [
+        12,
+        "shipping_method_id"
+      ],
+      [
+        12,
+        "dest_address_id"
+      ],
+      [
+        13,
+        "name"
+      ],
+      [
+        13,
+        "seq"
+      ],
+      [
+        14,
+        "history_id"
+      ],
+      [
+        14,
+        "order_id"
+      ],
+      [
+        14,
+        "status_id"
+      ],
+      [
+        14,
+        "status_date"
+      ],
+      [
+        15,
+        "line_id"
+      ],
+      [
+        15,
+        "order_id"
+      ],
+      [
+        15,
+        "book_id"
+      ],
+      [
+        15,
+        "price"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "status id"
+      ],
+      [
+        0,
+        "address status"
+      ],
+      [
+        1,
+        "author id"
+      ],
+      [
+        1,
+        "author name"
+      ],
+      [
+        2,
+        "language id"
+      ],
+      [
+        2,
+        "language code"
+      ],
+      [
+        2,
+        "language name"
+      ],
+      [
+        3,
+        "country id"
+      ],
+      [
+        3,
+        "country name"
+      ],
+      [
+        4,
+        "address id"
+      ],
+      [
+        4,
+        "street number"
+      ],
+      [
+        4,
+        "street name"
+      ],
+      [
+        4,
+        "city"
+      ],
+      [
+        4,
+        "country id"
+      ],
+      [
+        5,
+        "customer id"
+      ],
+      [
+        5,
+        "first name"
+      ],
+      [
+        5,
+        "last name"
+      ],
+      [
+        5,
+        "email"
+      ],
+      [
+        6,
+        "customer id"
+      ],
+      [
+        6,
+        "address id"
+      ],
+      [
+        6,
+        "status id"
+      ],
+      [
+        7,
+        "status id"
+      ],
+      [
+        7,
+        "status value"
+      ],
+      [
+        8,
+        "publisher id"
+      ],
+      [
+        8,
+        "publisher name"
+      ],
+      [
+        9,
+        "book id"
+      ],
+      [
+        9,
+        "title"
+      ],
+      [
+        9,
+        "isbn13"
+      ],
+      [
+        9,
+        "language id"
+      ],
+      [
+        9,
+        "num pages"
+      ],
+      [
+        9,
+        "publication date"
+      ],
+      [
+        9,
+        "publisher id"
+      ],
+      [
+        10,
+        "book id"
+      ],
+      [
+        10,
+        "author id"
+      ],
+      [
+        11,
+        "method id"
+      ],
+      [
+        11,
+        "method name"
+      ],
+      [
+        11,
+        "cost"
+      ],
+      [
+        12,
+        "order id"
+      ],
+      [
+        12,
+        "order date"
+      ],
+      [
+        12,
+        "customer id"
+      ],
+      [
+        12,
+        "shipping method id"
+      ],
+      [
+        12,
+        "dest address id"
+      ],
+      [
+        13,
+        "name"
+      ],
+      [
+        13,
+        "seq"
+      ],
+      [
+        14,
+        "history id"
+      ],
+      [
+        14,
+        "order id"
+      ],
+      [
+        14,
+        "status id"
+      ],
+      [
+        14,
+        "status date"
+      ],
+      [
+        15,
+        "line id"
+      ],
+      [
+        15,
+        "order id"
+      ],
+      [
+        15,
+        "book id"
+      ],
+      [
+        15,
+        "price"
+      ]
+    ]
+  },
+  {
+    "db_id": "video_games",
+    "table_names_original": [
+      "genre",
+      "game",
+      "platform",
+      "publisher",
+      "game_publisher",
+      "game_platform",
+      "region",
+      "region_sales"
+    ],
+    "table_names": [
+      "genre",
+      "game",
+      "platform",
+      "publisher",
+      "game publisher",
+      "game platform",
+      "region",
+      "region sales"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "id"
+      ],
+      [
+        0,
+        "genre_name"
+      ],
+      [
+        1,
+        "id"
+      ],
+      [
+        1,
+        "genre_id"
+      ],
+      [
+        1,
+        "game_name"
+      ],
+      [
+        2,
+        "id"
+      ],
+      [
+        2,
+        "platform_name"
+      ],
+      [
+        3,
+        "id"
+      ],
+      [
+        3,
+        "publisher_name"
+      ],
+      [
+        4,
+        "id"
+      ],
+      [
+        4,
+        "game_id"
+      ],
+      [
+        4,
+        "publisher_id"
+      ],
+      [
+        5,
+        "id"
+      ],
+      [
+        5,
+        "game_publisher_id"
+      ],
+      [
+        5,
+        "platform_id"
+      ],
+      [
+        5,
+        "release_year"
+      ],
+      [
+        6,
+        "id"
+      ],
+      [
+        6,
+        "region_name"
+      ],
+      [
+        7,
+        "region_id"
+      ],
+      [
+        7,
+        "game_platform_id"
+      ],
+      [
+        7,
+        "num_sales"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "id"
+      ],
+      [
+        0,
+        "genre name"
+      ],
+      [
+        1,
+        "id"
+      ],
+      [
+        1,
+        "genre id"
+      ],
+      [
+        1,
+        "game name"
+      ],
+      [
+        2,
+        "id"
+      ],
+      [
+        2,
+        "platform name"
+      ],
+      [
+        3,
+        "id"
+      ],
+      [
+        3,
+        "publisher name"
+      ],
+      [
+        4,
+        "id"
+      ],
+      [
+        4,
+        "game id"
+      ],
+      [
+        4,
+        "publisher id"
+      ],
+      [
+        5,
+        "id"
+      ],
+      [
+        5,
+        "game publisher id"
+      ],
+      [
+        5,
+        "platform id"
+      ],
+      [
+        5,
+        "release year"
+      ],
+      [
+        6,
+        "id"
+      ],
+      [
+        6,
+        "region name"
+      ],
+      [
+        7,
+        "region id"
+      ],
+      [
+        7,
+        "game platform id"
+      ],
+      [
+        7,
+        "num sales"
+      ]
+    ]
+  },
+  {
+    "db_id": "restaurant",
+    "table_names_original": [
+      "geographic",
+      "generalinfo",
+      "location"
+    ],
+    "table_names": [
+      "geographic",
+      "generalinfo",
+      "location"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "city"
+      ],
+      [
+        0,
+        "county"
+      ],
+      [
+        0,
+        "region"
+      ],
+      [
+        1,
+        "id_restaurant"
+      ],
+      [
+        1,
+        "label"
+      ],
+      [
+        1,
+        "food_type"
+      ],
+      [
+        1,
+        "city"
+      ],
+      [
+        1,
+        "review"
+      ],
+      [
+        2,
+        "id_restaurant"
+      ],
+      [
+        2,
+        "street_num"
+      ],
+      [
+        2,
+        "street_name"
+      ],
+      [
+        2,
+        "city"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "city"
+      ],
+      [
+        0,
+        "county"
+      ],
+      [
+        0,
+        "region"
+      ],
+      [
+        1,
+        "id restaurant"
+      ],
+      [
+        1,
+        "label"
+      ],
+      [
+        1,
+        "food type"
+      ],
+      [
+        1,
+        "city"
+      ],
+      [
+        1,
+        "review"
+      ],
+      [
+        2,
+        "id restaurant"
+      ],
+      [
+        2,
+        "street num"
+      ],
+      [
+        2,
+        "street name"
+      ],
+      [
+        2,
+        "city"
+      ]
+    ]
   }
 ]
