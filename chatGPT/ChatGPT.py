@@ -20,7 +20,7 @@ client = openai.OpenAI(
 )
 
 class ChatGPT:
-    def __init__(self, model="gpt-3.5-turbo"):
+    def __init__(self, model="gpt-3.5-turbo-0125"):
         self.messages = [{"role": "system", "content": prompt}]
         self.questions = ""
         self.model= model
@@ -38,7 +38,7 @@ class ChatGPT:
         chat_completion = client.chat.completions.create(
             messages=self.messages,
             model=self.model,
-            temperature=0.2,
+            temperature=0.4,
             top_p=1
         )
         self.messages = [{"role": "system", "content": prompt}]
